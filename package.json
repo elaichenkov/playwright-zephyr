@@ -1,0 +1,48 @@
+{
+  "name": "playwright-zephyr",
+  "version": "0.0.1",
+  "description": "Zephyr reporter for the Playwright",
+  "main": "lib/src/index.js",
+  "types": "lib/src/index.d.ts",
+  "files": [
+    "lib/src"
+  ],
+  "scripts": {
+    "prepare": "npm run build",
+    "version": "npm run format:write",
+    "build": "tsc",
+    "release": "release-it --github.release",
+    "release:ci": "npm run release -- --ci --npm.skipChecks --no-git.requireCleanWorkingDir",
+    "release:patch": "npm run release -- patch",
+    "release:minor": "npm run release -- minor",
+    "release:major": "npm run release -- major",
+    "format": "prettier --write \"(src|tests)/*.(ts)\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elaichenkov/playwright-zephyr.git"
+  },
+  "keywords": [
+    "playwright",
+    "zephyr",
+    "reporter",
+    "typescript",
+    "tools"
+  ],
+  "author": "Yevhen Laichenkov <elaichenkov@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elaichenkov/playwright-zephyr/issues"
+  },
+  "homepage": "https://github.com/elaichenkov/playwright-zephyr#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.16.1",
+    "prettier": "^2.4.1",
+    "release-it": "^14.11.6",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "picocolors": "^1.0.0"
+  }
+}
