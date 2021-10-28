@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "prepare": "npm run build",
-    "version": "npm run format:write",
+    "version": "npm run format",
     "build": "tsc",
     "release": "release-it --github.release",
     "release:ci": "npm run release -- --ci --npm.skipChecks --no-git.requireCleanWorkingDir",
