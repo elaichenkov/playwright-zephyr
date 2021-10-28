@@ -43,7 +43,7 @@ const config: PlaywrightTestConfig = {
 }
 ```
 
-Also, your playwright tests should include unique ID inside square brackets `[J79]` of the your Zephyr test case:
+Also, your playwright tests should include unique ID inside square brackets `[J79]` of your Zephyr test case:
 
 ```typescript
 //      ↓  Zephyr test case ID inside square brackets
