@@ -37,7 +37,7 @@ export class ZephyrService {
       baseURL: this.url,
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Basic ${this.authorizationToken}`,
+        Authorization: `Bearer ${this.authorizationToken}`,
       },
       ...options,
     });
