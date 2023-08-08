@@ -41,6 +41,29 @@ const config: PlaywrightTestConfig = {
 }
 ```
 
+If your test cycle requires custom fields, you can specify them in `testCycle` option:
+
+```typescript
+// playwright.config.ts
+import { PlaywrightTestConfig } from '@playwright/test';
+
+const config: PlaywrightTestConfig = {
+    reporter: [
+    ['playwright-zephyr/lib/src/cloud', {
+      projectKey: 'JARV', // <-- Replace with your project key
+      authorizationToken: process.env.ZEPHYR_AUTH_TOKEN, // <-- Replace with your authorization token
+      testCycle: {
+          name: `Automated Playwright Run - ${new Date().toISOString()}`,
+          customFields: {
+            Browser: 'Google Chrome',
+            Device: 'MacOS',
+          },
+        },
+    }],
+  ],
+}
+```
+
 Read how to get Zephyr authorization token [here](https://tm4j-cloud.elevio.help/en/articles/164).
 
 Also, your playwright tests should include unique ID inside square brackets `[J79]` of your Zephyr test case:
