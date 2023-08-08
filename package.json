@@ -1,6 +1,6 @@
 {
   "name": "playwright-zephyr",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Zephyr reporter for the Playwright",
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
