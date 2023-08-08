@@ -1,6 +1,6 @@
 {
   "name": "playwright-zephyr",
-  "version": "0.0.10",
+  "version": "1.0.0",
   "description": "Zephyr reporter for the Playwright",
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
@@ -37,15 +37,15 @@
   "homepage": "https://github.com/elaichenkov/playwright-zephyr#readme",
   "devDependencies": {
     "@playwright/test": "^1.36.2",
-    "@types/adm-zip": "^0.5.0",
-    "adm-zip": "^0.5.10",
     "prettier": "^3.0.1",
     "release-it": "^16.1.3",
-    "table": "^6.8.1",
     "typescript": "^5.1.6"
   },
   "dependencies": {
     "axios": "^1.4.0",
-    "picocolors": "^1.0.0"
+    "picocolors": "^1.0.0",
+    "table": "^6.8.1",
+    "@types/adm-zip": "^0.5.0",
+    "adm-zip": "^0.5.10"
   }
 }
