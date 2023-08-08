@@ -9,8 +9,6 @@ import { createReadStream } from 'fs';
 import { bold, green, blue, gray } from 'picocolors';
 import FormData from 'form-data';
 import { validateOptions } from './validate-options';
-import { constants } from 'node:crypto';
-import { Agent } from 'node:https';
 
 function isAxiosError(error: any): error is AxiosError {
   return error.isAxiosError === true;
