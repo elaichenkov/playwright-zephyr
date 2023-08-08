@@ -53,7 +53,7 @@ export class ZephyrService {
         data,
       });
 
-      if (response.status !== 200) throw new Error(`${response.status} - Failed to create test cycle`);
+      if (response.status !== 200) throw new Error(`${response.status} - Failed to create test cycle.`);
 
       const {
         data: { testCycle },
@@ -94,7 +94,7 @@ export class ZephyrService {
       } else if (error.request) {
         throw new Error(`The request was made but no response was received. \n Error: ${inspect(error.toJSON())}`);
       } else {
-        throw new Error(`Something happened in setting up the request that triggered an Error\n : ${inspect(error.message)}`);
+        throw new Error(`Something happened in setting up the request that triggered an error\n : ${inspect(error.message)}`);
       }
     }
 
