@@ -50,10 +50,6 @@ export class ZephyrService {
           Authorization: `Bearer ${this.authorizationToken}`,
           ...data.getHeaders(),
         },
-        // Warning: The request will fail with GlobalProtect VPN without setting this secure options ¯\_(ツ)_/¯
-        httpsAgent: new Agent({
-          secureOptions: constants.SSL_OP_LEGACY_SERVER_CONNECT,
-        }),
         data,
       });
 
