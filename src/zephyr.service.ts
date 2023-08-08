@@ -39,6 +39,7 @@ export class ZephyrService {
         'Content-Type': 'application/json',
         Authorization: `Basic ${this.authorizationToken}`,
       },
+      ...options,
     });
   }
 

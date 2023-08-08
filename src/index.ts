@@ -1,6 +1,7 @@
-import { ZephyrStatus, ZephyrTestResult } from '../types/zephyr.types';
+import type { ZephyrOptions, ZephyrStatus, ZephyrTestResult } from '../types/zephyr.types';
+import type { Reporter, TestCase, TestResult, TestStatus } from '@playwright/test/reporter';
+
 import { ZephyrService } from './zephyr.service';
-import { Reporter, FullConfig, TestCase, TestResult, TestStatus } from '@playwright/test/reporter';
 
 function convertPwStatusToZephyr(status: TestStatus): ZephyrStatus {
   if (status === 'passed') return 'Pass';
@@ -16,25 +17,16 @@ class ZephyrReporter implements Reporter {
   private testResults: ZephyrTestResult[] = [];
   private projectKey!: string;
   private testCaseKeyPattern = /\[(.*?)\]/;
+  private options: ZephyrOptions;
 
-  async onBegin(config: FullConfig) {
-    const reporter = config.reporter.find((reporter) =>
-      reporter.find((name) => typeof name === 'string' && name.includes('/playwright-zephyr/')),
-    );
-    if (!reporter)
-      throw new Error('Please provide required options in the config file: host, projectKey, user and password or authorizationToken');
+  constructor(options: ZephyrOptions) {
+    this.options = options;
+  }
 
-    const [, { host, user, password, projectKey, authorizationToken }] = reporter;
+  async onBegin() {
+    this.projectKey = this.options.projectKey;
 
-    this.projectKey = projectKey;
-
-    this.zephyrService = new ZephyrService({
-      host,
-      user,
-      password,
-      authorizationToken,
-      projectKey,
-    });
+    this.zephyrService = new ZephyrService(this.options);
   }
 
   onTestEnd(test: TestCase, result: TestResult) {
