@@ -9,7 +9,6 @@ import { createJsonReport } from './create-report-file';
 import { validateOptions } from './validate-options';
 import { ZephyrService } from './zephyr-cloud.service';
 
-
 export class ZephyrReporter implements Reporter {
   private zephyrService!: ZephyrService;
   private testResults: ZephyrTestResult[] = [];

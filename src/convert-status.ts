@@ -27,7 +27,6 @@ export type ZephyrTestCycle = {
   };
 };
 
-
 export function convertStatus(status: string): ZephyrStatus {
   if (status === 'passed') return 'Pass';
   if (status === 'failed') return 'Fail';

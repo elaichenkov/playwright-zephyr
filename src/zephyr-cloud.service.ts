@@ -93,16 +93,12 @@ export class ZephyrService {
 
       if (error.response) {
         throw new Error(
-          `\nStatus: ${error.response.status} \nHeaders: ${inspect(error.response.headers)} \nData: ${inspect(
-            error.response.data,
-          )}`,
+          `\nStatus: ${error.response.status} \nHeaders: ${inspect(error.response.headers)} \nData: ${inspect(error.response.data)}`,
         );
       } else if (error.request) {
         throw new Error(`The request was made but no response was received. \n Error: ${inspect(error.toJSON())}`);
       } else {
-        throw new Error(
-          `Something happened in setting up the request that triggered an Error\n : ${inspect(error.message)}`,
-        );
+        throw new Error(`Something happened in setting up the request that triggered an Error\n : ${inspect(error.message)}`);
       }
     }
 
