@@ -35,14 +35,10 @@ class ZephyrReporter implements Reporter {
       const [, testCaseId] = test.title.match(this.testCaseKeyPattern)!;
       const testCaseKey = `${this.projectKey}-${testCaseId}`;
       const status = convertPwStatusToZephyr(result.status);
-      // @ts-ignore
-      const browserName = test._pool.registrations.get('browserName').fn;
-      const capitalize = (word: string) => word && word[0]!.toUpperCase() + word.slice(1);
-
       this.testResults.push({
         testCaseKey,
         status,
-        environment: projectName || capitalize(browserName),
+        environment: projectName ?? 'Playwright',
         executionDate: new Date().toISOString(),
       });
     }

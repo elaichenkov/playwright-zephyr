@@ -10,25 +10,7 @@ npm i -D playwright-zephyr
 
 ## Usage
 
-Add reporter to your `playwright.config.ts` configuration file
-
-With `user` and `password` options:
-
-```typescript
-// playwright.config.ts
-import { PlaywrightTestConfig } from '@playwright/test';
-
-const config: PlaywrightTestConfig = {
-  reporter: [['playwright-zephyr', { 
-    host: 'https://jira.your-company-domain.com/',
-    user: 'username',
-    password: 'password',
-    projectKey: 'JARV'
-  }]],
-}
-```
-
-With `authorizationToken` option instead of `user` and `password`:
+Add **Server** reporter to your `playwright.config.ts` configuration file
 
 ```typescript
 // playwright.config.ts
@@ -42,6 +24,24 @@ const config: PlaywrightTestConfig = {
   }]],
 }
 ```
+
+If you want to use **Cloud** reporter, you need to specify `cloud` option:
+
+```typescript
+// playwright.config.ts
+import { PlaywrightTestConfig } from '@playwright/test';
+
+const config: PlaywrightTestConfig = {
+  reporter: [
+    ['playwright-zephyr/lib/src/cloud', {
+      projectKey: 'JARV', // <-- Replace with your project key
+      authorizationToken: process.env.ZEPHYR_AUTH_TOKEN, // <-- Replace with your authorization token
+    }],
+  ],
+}
+```
+
+Read how to get Zephyr authorization token [here](https://tm4j-cloud.elevio.help/en/articles/164).
 
 Also, your playwright tests should include unique ID inside square brackets `[J79]` of your Zephyr test case:
 
