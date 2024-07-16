@@ -18,6 +18,7 @@ class ZephyrReporter implements Reporter {
   private projectKey!: string;
   private testCaseKeyPattern = /\[(.*?)\]/;
   private options: ZephyrOptions;
+  environment: string | undefined;
 
   constructor(options: ZephyrOptions) {
     this.options = options;
@@ -25,6 +26,7 @@ class ZephyrReporter implements Reporter {
 
   async onBegin() {
     this.projectKey = this.options.projectKey;
+    this.environment = this.options.environment;
 
     this.zephyrService = new ZephyrService(this.options);
   }
@@ -39,7 +41,7 @@ class ZephyrReporter implements Reporter {
       this.testResults.push({
         testCaseKey,
         status,
-        environment: projectName ?? 'Playwright Test',
+        environment: this.environment ?? projectName ?? 'Playwright Test',
         executionDate: new Date().toISOString(),
       });
     }

@@ -6,6 +6,7 @@ export interface ZephyrOptions extends AxiosRequestConfig {
   password?: string;
   authorizationToken?: string;
   projectKey: string;
+  environment?: string;
 }
 
 export type ZephyrStatus = 'Pass' | 'Fail' | 'Blocked' | 'Not Executed' | 'In Progress';
