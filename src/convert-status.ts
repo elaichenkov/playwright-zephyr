@@ -7,7 +7,7 @@ export interface ZephyrOptions extends AxiosRequestConfig {
   nodeInternalTlsRejectUnauthorized?: '0' | '1'; // NODE_TLS_REJECT_UNAUTHORIZED
 }
 
-export type ZephyrStatus = 'Pass' | 'Fail' | 'Blocked' | 'Not Executed' | 'In Progress';
+export type ZephyrStatus = 'Passed' | 'Failed' | 'Blocked' | 'Not Executed' | 'In Progress';
 
 export type ZephyrTestResult = {
   result: ZephyrStatus;
@@ -28,8 +28,8 @@ export type ZephyrTestCycle = {
 };
 
 export function convertStatus(status: string): ZephyrStatus {
-  if (status === 'passed') return 'Pass';
-  if (status === 'failed') return 'Fail';
+  if (status === 'passed') return 'Passed';
+  if (status === 'failed') return 'Failed';
   if (status === 'timedOut') return 'Blocked';
 
   return 'Not Executed';
