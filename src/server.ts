@@ -4,8 +4,8 @@ import type { Reporter, TestCase, TestResult, TestStatus } from '@playwright/tes
 import { ZephyrService } from './zephyr.service';
 
 function convertPwStatusToZephyr(status: TestStatus): ZephyrStatus {
-  if (status === 'passed') return 'Pass';
-  if (status === 'failed') return 'Fail';
+  if (status === 'passed') return 'Passed';
+  if (status === 'failed') return 'Failed';
   if (status === 'skipped') return 'Not Executed';
   if (status === 'timedOut') return 'Blocked';
 

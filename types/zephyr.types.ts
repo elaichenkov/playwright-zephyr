@@ -9,7 +9,7 @@ export interface ZephyrOptions extends AxiosRequestConfig {
   environment?: string;
 }
 
-export type ZephyrStatus = 'Pass' | 'Fail' | 'Blocked' | 'Not Executed' | 'In Progress';
+export type ZephyrStatus = 'Passed' | 'Failed' | 'Blocked' | 'Not Executed' | 'In Progress';
 
 export type ZephyrTestResult = {
   testCaseKey: string;
