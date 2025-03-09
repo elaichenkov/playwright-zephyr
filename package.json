@@ -36,16 +36,19 @@
   },
   "homepage": "https://github.com/elaichenkov/playwright-zephyr#readme",
   "devDependencies": {
-    "@playwright/test": "^1.36.2",
+    "@playwright/test": "^1.51.0",
+    "@types/node": "^22.13.10",
     "prettier": "^3.0.1",
     "release-it": "^18.0.0",
     "typescript": "^5.1.6"
   },
   "dependencies": {
+    "@types/adm-zip": "^0.5.0",
+    "adm-zip": "^0.5.10",
     "axios": "^1.4.0",
     "picocolors": "^1.0.0",
-    "table": "^6.8.1",
-    "@types/adm-zip": "^0.5.0",
-    "adm-zip": "^0.5.10"
+    "playwright": "^1.51.0",
+    "playwright-zephyr": "^1.2.0",
+    "table": "^6.8.1"
   }
 }
