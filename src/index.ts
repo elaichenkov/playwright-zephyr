@@ -12,6 +12,15 @@ function convertPwStatusToZephyr(status: TestStatus): ZephyrStatus {
   return 'Not Executed';
 }
 
+function stripAnsiCodes(str){
+    const ansiRegex = /[\u001b\u009b][[()#;?]*((\d{1,4}(;\d{0,4})*)?[0-9A-PR-TZcf-ntqry=><~])|[\u001b\u009b][[()#;?]*((;?\d{0,4}){0,1}[A-Za-z])|[\u001b\u009b][[()#;?]*((;?\d{0,4}){0,2}[A-Za-z])/g;
+    return str.replace(ansiRegex, '')
+}
+function formatErrorMessage(errorMessage) {
+    const cleanedMessage = stripAnsiCodes(errorMessage)
+    return cleanedMessage.replace(/\n/g, ' ').replace(/\s\s+/g, '').trim()
+}
+
 class ZephyrReporter implements Reporter {
   private zephyrService!: ZephyrService;
   private testResults: ZephyrTestResult[] = [];
@@ -37,6 +46,8 @@ class ZephyrReporter implements Reporter {
       const [, testCaseId] = test.title.match(this.testCaseKeyPattern)!;
       const testCaseKey = `${this.projectKey}-${testCaseId}`;
       const status = convertPwStatusToZephyr(result.status);
+      const errorMessage = result.error?.message;
+      const comment = errorMessage ? formatErrorMessage(errorMessage) : '';
       this.testResults.push({
         testCaseKey,
         status,
