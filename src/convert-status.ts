@@ -5,6 +5,7 @@ export interface ZephyrOptions extends AxiosRequestConfig {
   projectKey: string;
   testCycle?: ZephyrTestCycle;
   nodeInternalTlsRejectUnauthorized?: '0' | '1'; // NODE_TLS_REJECT_UNAUTHORIZED
+  ignoreFailedRetries?: boolean;
 }
 
 export type ZephyrStatus = 'Passed' | 'Failed' | 'Blocked' | 'Not Executed' | 'In Progress';
