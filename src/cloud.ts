@@ -31,16 +31,11 @@ export default class ZephyrReporter implements Reporter {
       const [, testCaseId] = test.title.match(this.testCaseKeyPattern)!;
       const testCaseKey = `${this.projectKey}-${testCaseId}`;
       const status = convertStatus(result.status);
+      const ansiRegex = /(\x1b\[[0-9;]+m)/g;
       const comment = result.error
-        ? `<b>❌ Error Message: </b> <br> <span style="color: rgb(226, 80, 65);">${result.error?.message?.replaceAll(
-            '\n',
-            '<br>',
-          )}</span> <br> <br> <b>🧱 Stack Trace:</b> <br> <span style="color: rgb(226, 80, 65);">${result.error?.stack?.replaceAll(
-            '\n',
-            '<br>',
-          )}</span>`
+        ? `<b>❌ Error Message: </b> <br> <span style="color: rgb(226, 80, 65);">${result.error?.message?.replace(ansiRegex, '')}
+        </span> <br> <br> <b>🧱 Stack Trace:</b> <br> <span style="color: rgb(226, 80, 65);">${result.error?.stack?.replace(ansiRegex, '')}</span>`
         : undefined;
-
       this.testResults.push({
         result: status,
         testCase: {
