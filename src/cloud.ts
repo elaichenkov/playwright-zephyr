@@ -15,9 +15,11 @@ export default class ZephyrReporter implements Reporter {
   private projectKey!: string;
   private testCaseKeyPattern = /\[(.*?)\]/;
   private options: ZephyrOptions;
+  private readonly ignoreFailedRetries: boolean;
 
   constructor(options: ZephyrOptions) {
     this.options = validateOptions(options);
+    this.ignoreFailedRetries = this.options.ignoreFailedRetries || false;
   }
 
   async onBegin() {
@@ -27,6 +29,9 @@ export default class ZephyrReporter implements Reporter {
   }
 
   onTestEnd(test: TestCase, result: TestResult) {
+    if (this.ignoreFailedRetries && test.retries !== result.retry && result.status !== 'passed') {
+      return;
+    }
     if (test.title.match(this.testCaseKeyPattern) && test.title.match(this.testCaseKeyPattern)!.length > 1) {
       const [, testCaseId] = test.title.match(this.testCaseKeyPattern)!;
       const testCaseKey = `${this.projectKey}-${testCaseId}`;

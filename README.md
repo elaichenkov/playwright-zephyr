@@ -25,6 +25,21 @@ const config: PlaywrightTestConfig = {
 }
 ```
 
+### Optional: Ignore failed retries
+
+To avoid duplicate "blocked" test results in Zephyr (especially if the test passes after a retry), you can enable the following option:
+
+```ts
+reporter: [['playwright-zephyr', {
+  host: 'https://jira.your-company-domain.com/',
+  authorizationToken: 'SVSdrtwgDSA312342--',
+  projectKey: 'JARV',
+  ignoreFailedRetries: true, // ← Add this to ignore intermediate retry failures
+}]]
+```
+
+When enabled, only the first successful or skipped retry will be reported. Failed retries are skipped unless the test ultimately fails all attempts.
+
 If you want to use **Cloud** reporter, you need to specify `cloud` option:
 
 ```typescript
