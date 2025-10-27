@@ -32,6 +32,7 @@ export class ZephyrService {
     this.basicAuthToken = Buffer.from(`${this.user}:${this.password}`).toString('base64');
     this.authorizationToken = options.authorizationToken ?? this.basicAuthToken;
     this.projectKey = options.projectKey;
+    this.testCycle = options.testCycle;
 
     this.axios = axios.create({
       baseURL: this.url,
@@ -43,7 +44,7 @@ export class ZephyrService {
     });
   }
 
-  async createRun(items: ZephyrTestResult[], name = this.defaultRunName): Promise<string> {
+  async createRun(items: ZephyrTestResult[], name = this.testCycle.name ?? this.defaultRunName): Promise<string> {
     const URL = `${this.url}/testrun`;
 
     try {
