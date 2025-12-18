@@ -32,18 +32,29 @@ class ZephyrReporter implements Reporter {
   }
 
   onTestEnd(test: TestCase, result: TestResult) {
+    let testCaseIds: string[] | undefined;
     if (test.title.match(this.testCaseKeyPattern) && test.title.match(this.testCaseKeyPattern)!.length > 1) {
-      const [, projectName] = test.titlePath();
       const [, testCaseId] = test.title.match(this.testCaseKeyPattern)!;
-      const testCaseKey = `${this.projectKey}-${testCaseId}`;
-      const status = convertPwStatusToZephyr(result.status);
+      if(testCaseId) testCaseIds = [testCaseId];
+    } else if(test.annotations.some(annotation => annotation.type === 'zephyrTestId')){
+      testCaseIds = test.annotations
+        .filter(annotation => annotation.type === 'zephyrTestId')
+        .map(annotation => annotation.description || '');  
+    }
 
-      this.testResults.push({
-        testCaseKey,
-        status,
-        environment: this.environment ?? projectName ?? 'Playwright Test',
-        executionDate: new Date().toISOString(),
-      });
+    if(testCaseIds) {
+      for (const testCaseId of testCaseIds) {
+        const [, projectName] = test.titlePath();
+        const testCaseKey = `${this.projectKey}-${testCaseId}`;
+        const status = convertPwStatusToZephyr(result.status);
+
+        this.testResults.push({
+          testCaseKey,
+          status,
+          environment: this.environment ?? projectName ?? 'Playwright Test',
+          executionDate: new Date().toISOString(),
+        });
+      }
     }
   }
 

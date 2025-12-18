@@ -37,15 +37,16 @@
   "homepage": "https://github.com/elaichenkov/playwright-zephyr#readme",
   "devDependencies": {
     "@playwright/test": "^1.36.2",
+    "dotenv": "^17.2.3",
     "prettier": "^3.0.1",
     "release-it": "^19.0.2",
     "typescript": "^5.1.6"
   },
   "dependencies": {
+    "@types/adm-zip": "^0.5.0",
+    "adm-zip": "^0.5.10",
     "axios": "^1.4.0",
     "picocolors": "^1.0.0",
-    "table": "^6.8.1",
-    "@types/adm-zip": "^0.5.0",
-    "adm-zip": "^0.5.10"
+    "table": "^6.8.1"
   }
 }

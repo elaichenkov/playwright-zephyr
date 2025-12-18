@@ -77,6 +77,19 @@ test('[J79] basic test', async ({ page }) => {
 });
 ```
 
+You can also use annotations to set the test id, note this supports multiple test ids.
+```typescript
+test('An annotated test', {
+  annotation: [
+      { type: 'zephyrTestId', description: 'T2' },
+      { type: 'zephyrTestId', description: 'T3' }
+  ]
+}, async ({page}){
+  await page.goto('https://playwright.dev/');
+  const title = page.locator('.navbar__inner .navbar__title');
+  await expect(title).toHaveText('Playwright');
+});
+
 Then run your tests with `npx playwright test` command and you'll see the result in console:
 
 ```sh

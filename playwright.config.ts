@@ -2,7 +2,7 @@
 import { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
-  reporter: [['list'], ['./src/zephyr.reporter.ts', { 
+  reporter: [['list'], ['./src', { 
     host: '',
     runName: '',
     user: '',
