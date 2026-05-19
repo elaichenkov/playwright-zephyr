@@ -20,7 +20,8 @@ const config: PlaywrightTestConfig = {
   reporter: [['playwright-zephyr', { 
     host: 'https://jira.your-company-domain.com/',
     authorizationToken: 'SVSdrtwgDSA312342--',
-    projectKey: 'JARV'
+    projectKey: 'JARV',
+    testRunKey: 'IMDSGIL-C2' // <-- Optional to update a testCycle instead of creating a new one
   }]],
 }
 ```
